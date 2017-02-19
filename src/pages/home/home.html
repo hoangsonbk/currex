@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Project Woofie
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  Currency exchange apps project.
+  <p>
+   	Some text will be display here.
+  </p>
+  <button ion-button *ngIf="leftCurrency" #button color="light" id="leftCurBtn" (click)="leftCurrencyButtonClicked($event, button)">{{leftCurrency}}</button>
+  <button ion-button color="light">JPY</button>
+
+  <ion-card>
+  	<ion-card-header></ion-card-header>
+  	<ion-card-content>A card content</ion-card-content>
+  </ion-card>
+</ion-content>
