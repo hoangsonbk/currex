@@ -8,27 +8,27 @@ import { AlertController } from 'ionic-angular';
   templateUrl: 'home.html'
 })
 export class HomePage {
-	leftCurrency: string;
-	leftCurrencyValue: string;
-	rightCurrency: string;
-	rightCurrencyValue: string;
+	LCurrency: string;
+	LCurrencyValue: string;
+	RCurrency: string;
+	RCurrencyValue: string;
 	currencySelectAlertOpen: boolean;
 
 
 	constructor(public navCtrl: NavController, public alertController: AlertController) {
-    	this.leftCurrency = 'USD';
+    	this.LCurrency = 'USD';
+    	this.RCurrency = 'USD';
 	}
 
-	leftCurrencyButtonClicked(event, button){
-		console.log(">>>Left cliked:" + button.id);
-		this.selectCurrency(name);
+	leftCurrencyButtonClicked(event){
+		this.selectCurrency("LCurrency");
 	}
 
-	rightCurrencyButtonClicked(event, item){
-
+	rightCurrencyButtonClicked(event){
+		this.selectCurrency("RCurrency");
 	}
 
-	selectCurrency(sourceButton){
+	selectCurrency(source){
 		let alert = this.alertController.create();
 		alert.addInput({
 			type: 'radio',
@@ -49,9 +49,12 @@ export class HomePage {
 		alert.addButton({
       		text: 'OK',
       		handler: data => {
-        		console.log('Radio data:', data);
-        		this.leftCurrency = data;
+        		console.log('Selected Data:' + data);
+        		console.log('Current data:' + this.LCurrency + "-" + this.RCurrency);
+        		this.LCurrency = (source=="LCurrency"? data : this.LCurrency);
+        		this.RCurrency = (source=="RCurrency"? data : this.RCurrency);
         		this.currencySelectAlertOpen = false;
+        		console.log('Updated data:' + this.LCurrency + "-" + this.RCurrency);
         	}
         });
         alert.present().then(() => {

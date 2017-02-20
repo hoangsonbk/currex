@@ -11,8 +11,8 @@
   <p>
    	Some text will be display here.
   </p>
-  <button ion-button *ngIf="leftCurrency" #button color="light" id="leftCurBtn" (click)="leftCurrencyButtonClicked($event, button)">{{leftCurrency}}</button>
-  <button ion-button color="light">JPY</button>
+  <button ion-button *ngIf="LCurrency" color="light" (click)="leftCurrencyButtonClicked($event)">{{LCurrency}}</button>
+  <button ion-button *ngIf="RCurrency" color="light" (click)="rightCurrencyButtonClicked($event)">{{RCurrency}}</button>
 
   <ion-card>
   	<ion-card-header></ion-card-header>
