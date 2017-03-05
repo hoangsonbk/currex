@@ -11,11 +11,19 @@
   <p>
    	Some text will be display here.
   </p>
+  <ion-item>
+    <ion-label fixed>Left Value</ion-label>
+    <ion-input type="text" value="" [(ngModel)]="LValue"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label fixed>Right Value</ion-label>
+    <ion-input type="text" value="" [(ngModel)]="RValue"></ion-input>
+  </ion-item>
   <button ion-button *ngIf="LCurrency" color="light" (click)="leftCurrencyButtonClicked($event)">{{LCurrency}}</button>
   <button ion-button *ngIf="RCurrency" color="light" (click)="rightCurrencyButtonClicked($event)">{{RCurrency}}</button>
 
   <ion-card>
   	<ion-card-header></ion-card-header>
-  	<ion-card-content>A card content</ion-card-content>
+  	<ion-card-content *ngIf="LValue||RValue">Value: {{LValue}} - {{RValue}}</ion-card-content>
   </ion-card>
 </ion-content>

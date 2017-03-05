@@ -10,24 +10,33 @@ import 'rxjs/add/operator/map';
 */
 @Injectable()
 export class CurrencyExchProvider {
-
+  data:any;
+  baseCur: string;
+  targetCur: string;
   constructor(public http: Http) {
     console.log('Hello CurrencyExchProvider Provider');
+
+    
   }
 
   load() {
-    if (this.data1) {
-      return Promise.resolve(this.data1);
+    if (this.data) {
+      return Promise.resolve(this.data);
     }
     // Dont have the data yet
     return new Promise(resolve => {
-      this.http.get('https://randomuser.me/api/?results=10')
+      console.log('>>>' + this.baseCur + this.targetCur);
+      this.http.get('http://api.fixer.io/latest?base='+this.baseCur+'&symbols='+this.targetCur)
         .map(res => res.json())
         .subscribe(data => {
-          this.data1 = data.results;
-          resolve(this.data1);
+          this.data = data
+          this.data = data.rates.JPY;
+          resolve(this.data);
+          console.log('>>>'+JSON.stringify(data));
         });
     });
+
+    
   }  
 
 }

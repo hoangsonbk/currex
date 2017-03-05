@@ -2,10 +2,12 @@ import { Component } from '@angular/core';
 
 import { NavController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
+import { CurrencyExchProvider } from '../../providers/currency-exch-provider'
 
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
+  providers: [CurrencyExchProvider]
 })
 export class HomePage {
 	LCurrency: string;
@@ -13,11 +15,23 @@ export class HomePage {
 	RCurrency: string;
 	RCurrencyValue: string;
 	currencySelectAlertOpen: boolean;
+	LValue: string;
+	RValue: string;
+	result: any;
 
 
-	constructor(public navCtrl: NavController, public alertController: AlertController) {
+	constructor(public navCtrl: NavController, public alertController: AlertController, public exchProvder: CurrencyExchProvider) {
     	this.LCurrency = 'USD';
     	this.RCurrency = 'USD';
+    	this.exchProvder.baseCur = 'USD';
+    	this.exchProvder.targetCur = 'JPY';
+    	this.loadCurExchProider();
+	}
+
+	loadCurExchProider(){
+		this.exchProvder.load().then(data => {
+			this.result = data;
+		});
 	}
 
 	leftCurrencyButtonClicked(event){
@@ -55,6 +69,8 @@ export class HomePage {
         		this.RCurrency = (source=="RCurrency"? data : this.RCurrency);
         		this.currencySelectAlertOpen = false;
         		console.log('Updated data:' + this.LCurrency + "-" + this.RCurrency);
+        		console.log('Input Data:' + this.LValue + "-" + this.RValue);
+        		console.log('Result:' + this.result);
         	}
         });
         alert.present().then(() => {
