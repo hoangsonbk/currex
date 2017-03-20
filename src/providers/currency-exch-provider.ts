@@ -20,19 +20,19 @@ export class CurrencyExchProvider {
   }
 
   load() {
-    if (this.data) {
-      return Promise.resolve(this.data);
-    }
+    //if (this.data) {
+    //  return Promise.resolve(this.data);
+    //}
     // Dont have the data yet
     return new Promise(resolve => {
-      console.log('>>>' + this.baseCur + this.targetCur);
+      console.log('-->' + this.baseCur + this.targetCur);
       this.http.get('http://api.fixer.io/latest?base='+this.baseCur+'&symbols='+this.targetCur)
         .map(res => res.json())
         .subscribe(data => {
           this.data = data
-          this.data = data.rates.JPY;
+          //this.data = data.rates.JPY;
           resolve(this.data);
-          console.log('>>>'+JSON.stringify(data));
+          console.log('-->'+JSON.stringify(data));
         });
     });
 

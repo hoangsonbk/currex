@@ -10,10 +10,10 @@ import { CurrencyExchProvider } from '../../providers/currency-exch-provider'
   providers: [CurrencyExchProvider]
 })
 export class HomePage {
-	LCurrency: string;
-	LCurrencyValue: string;
-	RCurrency: string;
-	RCurrencyValue: string;
+	baseCurrency: string;
+	baseCurrencyValue: string;
+	targetCurrency: string;
+	targetCurrencyValue: string;
 	currencySelectAlertOpen: boolean;
 	LValue: string;
 	RValue: string;
@@ -21,25 +21,33 @@ export class HomePage {
 
 
 	constructor(public navCtrl: NavController, public alertController: AlertController, public exchProvder: CurrencyExchProvider) {
-    	this.LCurrency = 'USD';
-    	this.RCurrency = 'USD';
+    	this.baseCurrency = 'USD';
+    	this.targetCurrency = 'USD';
     	this.exchProvder.baseCur = 'USD';
     	this.exchProvder.targetCur = 'JPY';
-    	this.loadCurExchProider();
+    	//this.loadCurExchProider();
 	}
 
 	loadCurExchProider(){
 		this.exchProvder.load().then(data => {
-			this.result = data;
+			this.result = JSON.stringify(data);
+			console.log('>>>Result:' + this.result);
 		});
 	}
 
-	leftCurrencyButtonClicked(event){
-		this.selectCurrency("LCurrency");
+	baseCurrencyButtonClicked(event){
+		this.selectCurrency("baseCurrency");
 	}
 
-	rightCurrencyButtonClicked(event){
-		this.selectCurrency("RCurrency");
+	targetCurrencyButtonClicked(event){
+		this.selectCurrency("targetCurrency");
+	}
+
+	update(){
+		this.exchProvder.baseCur = this.baseCurrency;
+        this.exchProvder.targetCur = this.targetCurrency;
+        console.log('>>>this.exchProvder.baseCur:' + this.exchProvder.baseCur);
+		this.loadCurExchProider();
 	}
 
 	selectCurrency(source){
@@ -57,20 +65,21 @@ export class HomePage {
 		});
 		alert.addInput({
 			type: 'radio',
-			value:'VND',
-			label:'VND'
+			value:'AUD',
+			label:'AUD'
 		});
 		alert.addButton({
       		text: 'OK',
       		handler: data => {
-        		console.log('Selected Data:' + data);
-        		console.log('Current data:' + this.LCurrency + "-" + this.RCurrency);
-        		this.LCurrency = (source=="LCurrency"? data : this.LCurrency);
-        		this.RCurrency = (source=="RCurrency"? data : this.RCurrency);
+        		//console.log('Selected Data:' + data);
+        
+        		this.baseCurrency = (source=="baseCurrency"? data : this.baseCurrency);
+        		this.targetCurrency = (source=="targetCurrency"? data : this.targetCurrency);
+        		
         		this.currencySelectAlertOpen = false;
-        		console.log('Updated data:' + this.LCurrency + "-" + this.RCurrency);
-        		console.log('Input Data:' + this.LValue + "-" + this.RValue);
-        		console.log('Result:' + this.result);
+        		//console.log('Updated data:' + this.LCurrency + "-" + this.RCurrency);
+        		//console.log('Input Data:' + this.LValue + "-" + this.RValue);
+        		console.log('Result:' + JSON.stringify(this.result));
         	}
         });
         alert.present().then(() => {
