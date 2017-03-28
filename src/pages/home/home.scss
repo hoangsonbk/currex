@@ -3,18 +3,7 @@ page-home {
 	$BCKGRD_BOTTOM: #25cdb6;
 
 	.baseContent{
-		background: -webkit-gradient(left top, $BCKGRD_TOP, $BCKGRD_BOTTOM);
-    	background: -o-linear-gradient(bottom right, $BCKGRD_TOP, $BCKGRD_BOTTOM);
-   		background: -moz-linear-gradient(bottom right, $BCKGRD_TOP, $BCKGRD_BOTTOM);
     	background: linear-gradient(to bottom right, $BCKGRD_TOP, $BCKGRD_BOTTOM);
-    	.title-text{
-    		color: white;
-    		margin-bottom: 20px;
-    	}
-    	
-    	.scroll-content{
-    		padding: 0px;
-    	}
 	}
 
 	.main-grid{

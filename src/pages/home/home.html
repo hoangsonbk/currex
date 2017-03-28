@@ -7,7 +7,18 @@
 </ion-header>
 
 <ion-content padding class="baseContent">
-  <div class="title-text">Currency exchange apps project.</div>
+  <div class="app-base">
+    <div class="background-img">
+      <ion-grid class="main-grid">
+        <ion-row class="grid-row" id="basecurrency-row">
+          <button ion-button class="baseButton" *ngIf="baseCurrency" (click)="baseCurrencyButtonClicked($event)">{{baseCurrency}}</button>
+        </ion-row>
+        <ion-row class="grid-row" id="targetcurrency-row">
+          <button ion-button class="targetButton" *ngIf="targetCurrency" (click)="targetCurrencyButtonClicked($event)">{{targetCurrency}}</button>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
  
   <ion-grid class="main-grid">
     <ion-row class="grid-row-subinfo">
@@ -25,12 +36,14 @@
       </ion-col>
     </ion-row>
     <ion-row class="grid-row" id="targetcurrency-row">
-      <ion-col>
-        <button ion-button class="targetButton" *ngIf="targetCurrency" (click)="targetCurrencyButtonClicked($event)">{{targetCurrency}}</button>
-      </ion-col>
-      <ion-col>
-        <ion-input class="targetAmountInput" type="number" placeholder="0.00" [(ngModel)]="targetValue"></ion-input>
-      </ion-col>
+      <div>
+        <ion-col>
+          <button ion-button class="targetButton" *ngIf="targetCurrency" (click)="targetCurrencyButtonClicked($event)">{{targetCurrency}}</button>
+        </ion-col>
+        <ion-col>
+          <ion-input class="targetAmountInput" type="number" placeholder="0.00" [(ngModel)]="targetValue"></ion-input>
+        </ion-col>
+      </div>
     </ion-row>
     <ion-row>
        <button ion-button color="light" (click)="update($event)">Update</button>
