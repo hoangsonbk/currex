@@ -1,60 +1,54 @@
-<ion-header>
+<!-- <ion-header>
   <ion-navbar>
     <ion-title>
       Project Woofie
     </ion-title>
   </ion-navbar>
-</ion-header>
+</ion-header> -->
 
-<ion-content padding class="baseContent">
-  <div class="app-base">
-    <div class="background-img">
-      <ion-grid class="main-grid">
-        <ion-row class="grid-row" id="basecurrency-row">
-          <button ion-button class="baseButton" *ngIf="baseCurrency" (click)="baseCurrencyButtonClicked($event)">{{baseCurrency}}</button>
-        </ion-row>
-        <ion-row class="grid-row" id="targetcurrency-row">
-          <button ion-button class="targetButton" *ngIf="targetCurrency" (click)="targetCurrencyButtonClicked($event)">{{targetCurrency}}</button>
-        </ion-row>
-      </ion-grid>
-    </div>
+<ion-content padding no-bounce class="baseContent">
+  <div class="background-container">
+    <img class="logo" src="img/logo.png"/>
+    <ion-grid class="main-grid">
+
+      <ion-row class="grid-row">
+        <ion-col width-33>
+          <button ion-button class="currency-button" *ngIf="baseCurrency" (click)="baseCurrencyButtonClicked($event)">{{baseCurrency}}</button>
+        </ion-col>
+        <ion-col>
+          <ion-input class="currency-input" type="number" placeholder="0.00" [(ngModel)]="baseCurrencyValue" (change)="requestExchProvider()"></ion-input>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <img class="down-arrow-img" src="img/down-arrow.png"/>
+      </ion-row>
+
+      <ion-row class="grid-row" >
+        <ion-col width-33>
+          <button ion-button class="currency-button" *ngIf="targetCurrency" (click)="targetCurrencyButtonClicked($event)">{{targetCurrency}}</button>
+        </ion-col>
+        <ion-col>
+          <ion-input class="currency-input" type="number" placeholder="0.00" [(ngModel)]="targetCurrencyValue" (change)="requestExchProvider()"></ion-input>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
   </div>
- 
-  <ion-grid class="main-grid">
-    <ion-row class="grid-row-subinfo">
-      <div class="text-subinfo">
-        <span>Last updated on 20 March 2017, 16:22</span>
-      </div>
-    </ion-row>
+  <div class="text-subinfo">
+      <span>Last updated on 20 March 2017, 16:22</span>
+  </div>
 
-    <ion-row class="grid-row" id="basecurrency-row">
-      <ion-col width-33>
-        <button ion-button class="baseButton" *ngIf="baseCurrency" (click)="baseCurrencyButtonClicked($event)">{{baseCurrency}}</button>
-      </ion-col>
-      <ion-col>
-        <ion-input class="baseAmountInput" type="number" placeholder="0.00" [(ngModel)]="baseValue"></ion-input>
-      </ion-col>
-    </ion-row>
-    <ion-row class="grid-row" id="targetcurrency-row">
-      <div>
-        <ion-col>
-          <button ion-button class="targetButton" *ngIf="targetCurrency" (click)="targetCurrencyButtonClicked($event)">{{targetCurrency}}</button>
-        </ion-col>
-        <ion-col>
-          <ion-input class="targetAmountInput" type="number" placeholder="0.00" [(ngModel)]="targetValue"></ion-input>
-        </ion-col>
-      </div>
-    </ion-row>
-    <ion-row>
-       <button ion-button color="light" (click)="update($event)">Update</button>
-    </ion-row>
-  </ion-grid>
-  <ion-card>
+  <img class="refresh-btn" src="img/refresh-btn.png" (click)="requestExchProvider()"/>
+  <div class="bottom-ad"></div>
+
+
+
+  <ion-card style="display:none">
     <ion-card-header></ion-card-header>
-    <ion-card-content *ngIf="baseValue||targetValue">Value: {{baseValue}} - {{targetValue}}</ion-card-content>
+    <ion-card-content *ngIf="baseValue||targetValue">Value: {{baseCurrencyValue}} - {{targetCurrencyValue}}</ion-card-content>
     <ion-card-content *ngIf="result">Rate: {{result}}</ion-card-content>
   </ion-card>
-  <div class="slide-in">Slide from left
-    <!-- <img src="assets/img/jp_l.jpg" alt="your image"> -->
-  </div>
+
+  
 </ion-content>
