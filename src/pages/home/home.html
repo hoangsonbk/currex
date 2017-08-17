@@ -7,7 +7,7 @@
 </ion-header> -->
 
 <ion-content padding no-bounce class="baseContent">
-  <div class="background-container">
+  <div class="background-container" [style.backgroundImage]="'url('+backgroundImgSrc+')'">
     <img class="logo" src="img/logo.png"/>
     <ion-grid class="main-grid">
 
@@ -29,7 +29,7 @@
           <button ion-button class="currency-button" *ngIf="targetCurrency" (click)="targetCurrencyButtonClicked($event)">{{targetCurrency}}</button>
         </ion-col>
         <ion-col>
-          <ion-input class="currency-input" type="number" placeholder="0.00" [(ngModel)]="targetCurrencyValue" (change)="requestExchProvider()"></ion-input>
+          <div class="currency-output animated fadeIn" *ngIf="targetCurrencyValue">{{targetCurrencyValue}}</div>
         </ion-col>
       </ion-row>
 
@@ -39,8 +39,8 @@
       <span>Last updated on 20 March 2017, 16:22</span>
   </div>
 
-  <img class="refresh-btn" src="img/refresh-btn.png" (click)="requestExchProvider()"/>
-  <div class="bottom-ad"></div>
+  <img class="refresh-btn" src="img/refresh-btn.png" (click)="refreshButtonClicked()"/>
+  <div class="bottom-ad" style="display:none"> </div>
 
 
 

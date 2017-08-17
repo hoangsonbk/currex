@@ -3,7 +3,8 @@ page-home {
 	$ROW_RIGHT: #92278f;
 	$UPDATE_INFO:#2078b1;
 	$ROW_GRADIENT:linear-gradient(to right, rgba(39,170,225,0.85) 0%,rgba(146,39,143,0.85) 100%);
-	
+
+	@media(max-width:450px) {
 	.currency-button{
 		border: solid 2px;
 		border-radius: 50%;
@@ -16,7 +17,6 @@ page-home {
 		text-align-last: end;
 		vertical-align: middle;
 		margin: 10px auto;
-		vertical-align: middle;
 		border-bottom: solid 2px;
 		border-color: white;
 		font-size: 30px;
@@ -26,8 +26,16 @@ page-home {
 		}
 	}
 
+	.currency-output{
+		color: white;
+    	font-size: 45px;
+    	text-align: right;
+    	vertical-align: middle;
+    	margin: auto;
+	}
+
 	.baseContent{
-    	background: linear-gradient(to bottom, #000000, #ffffff);
+    	//background: linear-gradient(to bottom, #000000, #ffffff);
     	padding: 0px;
     	display: plex;
     	flex-direction: column;
@@ -83,6 +91,108 @@ page-home {
 			align-self: center;
 			position: absolute;
   			left: 50%;
+  			//transform: translate(-50%, 0%);
+  			margin-top: 25px;
+		}
+
+		.bottom-ad{
+			background:$ROW_GRADIENT;
+			height: 45px;
+			position: absolute;
+			bottom:0px;
+			right:0px;
+			left:0px;
+		}
+	}	
+	}	
+
+	@media(max-width:321px) {
+	.currency-button{
+		border: solid 2px;
+		border-radius: 50%;
+		background-color: transparent;
+		height: 50px;
+		width: 50px;
+	}
+
+	.currency-input{
+		text-align-last: end;
+		vertical-align: middle;
+		margin: 10px auto;
+		border-bottom: solid 2px;
+		border-color: white;
+		font-size: 30px;
+		.text-input{
+			margin: 0px;
+			color: white;
+		}
+	}
+
+	.currency-output{
+		color: white;
+    	font-size: 45px;
+    	text-align: right;
+    	vertical-align: middle;
+    	margin: auto;
+	}
+
+	.baseContent{
+    	//background: linear-gradient(to bottom, #000000, #ffffff);
+    	padding: 0px;
+    	display: plex;
+    	flex-direction: column;
+
+    	.background-container{
+    		display: flex;
+    		flex-direction: column-reverse;
+    		justify-content: flex-start; 
+    		height: 350px;
+			//background-image: url('../../assets/img/jp_l.jpg');
+			background-image: url('../img/jp_l.png');
+			background-size: 100%;
+   			background-repeat: no-repeat;
+    		background-position: center;
+    		.logo{
+    			height: 30px;
+    			align-self:flex-start;
+    			order:2;
+    			margin: 10px 10px auto 10px;
+    		}
+    		.main-grid{
+    			padding: 0px;
+    			order:1;
+    		}
+    		.grid-row{
+    			background: $ROW_GRADIENT;
+    			height: 65px;
+    			box-shadow: 0px 0px 8px 3px rgba(0, 0, 0, 0.40);
+    			ion-col[width-33]{
+    				text-align: center;
+    			}    		
+    		}
+
+    		.down-arrow-img{
+    			margin: 10px auto 15px auto;
+    			height: 20px;
+    		}
+    	}
+    	.text-subinfo{
+    		height: 20px;
+    		background-color: $UPDATE_INFO;
+    		text-align: right;
+    		padding-right: 10px;
+    		span{
+    			color: white;
+				font-size: 10px;
+				padding-left: 5px;
+    		}		
+		}
+
+		.refresh-btn{
+			height: 75px;
+			align-self: center;
+			position: absolute;
+  			left: 50%;
   			transform: translate(-50%, 0%);
   			margin-top: 25px;
 		}
@@ -95,6 +205,6 @@ page-home {
 			right:0px;
 			left:0px;
 		}
-		
+	}	
 	}	
 }
